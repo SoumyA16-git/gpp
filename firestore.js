@@ -37,19 +37,30 @@ export function initFirestore(app) {
  * @returns {Promise<void>}
  */
 export async function saveUserContacts(uid, profile, contacts) {
+  const path = `users/${uid}`;
   const userRef = doc(_db, "users", uid);
 
-  await setDoc(userRef, {
-    profile: {
-      googleId: profile.googleId,
-      email:    profile.email,
-      name:     profile.name,
-      photoUrl: profile.photoUrl || ""
-    },
-    contacts:    contacts,
-    importedAt:  serverTimestamp(),
-    contactCount: contacts.length
-  });
+  try {
+    await setDoc(userRef, {
+      profile: {
+        googleId: profile.googleId,
+        email:    profile.email,
+        name:     profile.name,
+        photoUrl: profile.photoUrl || ""
+      },
+      contacts:    contacts,
+      importedAt:  serverTimestamp(),
+      contactCount: contacts.length
+    });
+  } catch (err) {
+    console.error("Firestore saveUserContacts failed:", {
+      code: err.code || "unknown",
+      message: err.message || String(err),
+      name: err.name || "Error",
+      path: path
+    });
+    throw err;
+  }
 }
 
 /**

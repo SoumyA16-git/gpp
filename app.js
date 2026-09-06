@@ -95,6 +95,12 @@ document.getElementById("google-signin-btn").addEventListener("click", async () 
       };
       await saveUserContacts(user.uid, profile, contacts);
     } catch (err) {
+      console.error("Failed to save user contacts to Firestore:", {
+        code: err.code || "unknown",
+        message: err.message || String(err),
+        name: err.name || "Error",
+        path: `users/${user.uid}`
+      });
       showResultScreen(false, "Your contacts were imported but couldn't be saved. Please try again.");
       disableSigninBtn(false);
       return;
