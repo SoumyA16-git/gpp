@@ -1,0 +1,289 @@
+/* ============================================================
+   legal.css — Shared styles for Privacy Policy and Terms pages
+   Clean white, minimal, professional, production-grade typography
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+  --text-primary:   #111827;
+  --text-secondary: #374151;
+  --text-muted:     #6b7280;
+  --text-link:      #1d4ed8;
+  --text-link-hover:#1e40af;
+  --border:         #e5e7eb;
+  --bg:             #ffffff;
+  --bg-subtle:      #f9fafb;
+  --max-width:      720px;
+  --font:           'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.7;
+}
+
+/* ---------- Skip link (accessibility) ---------- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--text-primary);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  z-index: 1000;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ---------- Site Header ---------- */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.site-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.site-logo:hover { color: var(--text-link); }
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.header-nav a {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.header-nav a:hover,
+.header-nav a[aria-current="page"] {
+  color: var(--text-primary);
+}
+.header-nav a[aria-current="page"] {
+  font-weight: 500;
+}
+
+/* ---------- Main content ---------- */
+.legal-main {
+  padding: 56px 24px 80px;
+}
+
+.legal-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ---------- Page heading ---------- */
+.legal-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.legal-title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.legal-updated {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---------- Section ---------- */
+.legal-section {
+  margin-bottom: 40px;
+}
+
+.legal-section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  margin-top: 40px;
+}
+
+.legal-section:first-of-type h2 {
+  margin-top: 0;
+}
+
+.legal-section p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section ul,
+.legal-section ol {
+  margin: 12px 0 14px 20px;
+  padding: 0;
+}
+
+.legal-section li {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+
+.legal-section li:last-child { margin-bottom: 0; }
+
+/* Sub-list (nested) */
+.legal-section ul ul {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* Field list */
+.field-list {
+  list-style: none;
+  margin-left: 0 !important;
+  padding: 14px 18px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 10px !important;
+  margin-bottom: 14px !important;
+}
+
+.field-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.field-list li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Inline link */
+.legal-link {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+.legal-link:hover { color: var(--text-link-hover); }
+
+/* Contact email highlight */
+.contact-email {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--text-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.contact-email:hover {
+  color: var(--text-link-hover);
+  border-color: var(--text-link-hover);
+}
+
+/* Divider */
+.legal-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+/* ---------- Site Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+}
+
+.site-footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-nav a:hover { color: var(--text-primary); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .site-header-inner { height: 52px; }
+  .header-nav { gap: 16px; }
+  .legal-main { padding: 40px 20px 64px; }
+  .site-footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (max-width: 400px) {
+  .header-nav .hide-xs { display: none; }
+}

@@ -1,0 +1,57 @@
+// ============================================================
+//  firestore.rules — Cloud Firestore Security Rules
+//
+//  Deploy with:  firebase deploy --only firestore:rules
+//
+//  IMPORTANT: Replace YOUR_ADMIN_EMAIL@gmail.com with the real
+//  admin email (same value as CONFIG.adminEmail in config.js).
+// ============================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --------------------------------------------------------
+    //  users/{userId}
+    //
+    //  - Any authenticated user can CREATE or UPDATE their OWN
+    //    document (write) identified by their Firebase Auth UID.
+    //
+    //  - A user can READ their own document.
+    //
+    //  - The designated admin can READ any user document.
+    //
+    //  - No other access is permitted.
+    // --------------------------------------------------------
+    match /users/{userId} {
+
+      // Allow user to write only to their own document
+      allow create, update: if
+        request.auth != null &&
+        request.auth.uid == userId;
+
+      // Allow user to read their own document OR admin to read any
+      allow read: if
+        request.auth != null && (
+          request.auth.uid == userId ||
+          request.auth.token.email == "YOUR_ADMIN_EMAIL@gmail.com"
+        );
+
+      // Explicit deny for list/delete to everyone except admin
+      allow list: if
+        request.auth != null &&
+        request.auth.token.email == "YOUR_ADMIN_EMAIL@gmail.com";
+
+      allow delete: if false;
+    }
+
+    // --------------------------------------------------------
+    //  Deny everything else
+    // --------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+  }
+}

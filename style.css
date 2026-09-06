@@ -1,0 +1,685 @@
+/* ============================================================
+   style.css — Google Material Design 3 inspired styles
+   ============================================================ */
+
+/* ---------- Google Font ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Google+Sans:wght@400;500;700&display=swap');
+
+/* ---------- CSS Custom Properties (Material Design tokens) ---------- */
+:root {
+  --md-primary:         #1a73e8;
+  --md-primary-dark:    #1557b0;
+  --md-primary-light:   #e8f0fe;
+  --md-on-primary:      #ffffff;
+  --md-surface:         #ffffff;
+  --md-on-surface:      #202124;
+  --md-on-surface-dim:  #5f6368;
+  --md-outline:         #dadce0;
+  --md-error:           #d93025;
+  --md-error-light:     #fce8e6;
+  --md-success:         #188038;
+  --md-success-light:   #e6f4ea;
+  --md-background:      #f8f9fa;
+
+  --md-shadow-1: 0 1px 2px rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  --md-shadow-2: 0 1px 2px rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+  --md-shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
+
+  --md-radius-sm:  4px;
+  --md-radius-md:  8px;
+  --md-radius-lg:  16px;
+  --md-radius-xl:  28px;
+
+  --md-transition: 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---------- Reset / Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'Google Sans', Arial, sans-serif;
+  background: var(--md-background);
+  color: var(--md-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Screen management ---------- */
+.screen {
+  display: none;
+  min-height: 100vh;
+}
+.screen.active {
+  display: flex;
+}
+
+/* ---------- Utility ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0,0,0,0);
+  overflow: hidden;
+}
+
+/* ============================================================
+   SCREEN 1 — Sign In
+   ============================================================ */
+#screen-signin {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.signin-card {
+  background: var(--md-surface);
+  border-radius: var(--md-radius-lg);
+  box-shadow: var(--md-shadow-2);
+  padding: 48px 40px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Google logo mark */
+.google-logo-mark {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 24px;
+}
+
+.signin-card h1 {
+  font-family: 'Google Sans', 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  margin-bottom: 8px;
+  letter-spacing: 0;
+}
+
+.signin-card .subtitle {
+  font-size: 14px;
+  color: var(--md-on-surface-dim);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* Privacy notice box */
+.privacy-notice {
+  background: var(--md-primary-light);
+  border-radius: var(--md-radius-md);
+  padding: 16px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.privacy-notice h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--md-primary-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.privacy-notice ul {
+  list-style: none;
+  padding: 0;
+}
+
+.privacy-notice ul li {
+  font-size: 13px;
+  color: #174ea6;
+  padding: 3px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.privacy-notice ul li::before {
+  content: '•';
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Official Google Sign-In button */
+.google-signin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--md-surface);
+  color: #3c4043;
+  border: 1px solid var(--md-outline);
+  border-radius: var(--md-radius-sm);
+  padding: 0 16px;
+  height: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--md-transition), box-shadow var(--md-transition);
+  width: 100%;
+  justify-content: center;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+}
+
+.google-signin-btn:hover {
+  background: #f8f9fa;
+  box-shadow: var(--md-shadow-1);
+}
+
+.google-signin-btn:active {
+  background: #e8eaed;
+}
+
+.google-signin-btn svg {
+  flex-shrink: 0;
+}
+
+.google-signin-btn .btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+/* Error message */
+.signin-error {
+  display: none;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--md-error-light);
+  border-radius: var(--md-radius-sm);
+  color: var(--md-error);
+  font-size: 13px;
+  text-align: left;
+  line-height: 1.5;
+}
+.signin-error.visible { display: block; }
+
+/* ============================================================
+   SCREEN 2 — Importing (progress)
+   ============================================================ */
+#screen-importing {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px;
+}
+
+/* Material circular progress */
+.md-progress-ring {
+  width: 64px;
+  height: 64px;
+  animation: md-rotate 1.4s linear infinite;
+}
+
+.md-progress-ring circle {
+  fill: none;
+  stroke: var(--md-primary);
+  stroke-width: 4;
+  stroke-dasharray: 150 50;
+  stroke-linecap: round;
+  animation: md-dash 1.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes md-rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes md-dash {
+  0%   { stroke-dasharray: 1 200; stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 90 200; stroke-dashoffset: -35px; }
+  100% { stroke-dasharray: 90 200; stroke-dashoffset: -124px; }
+}
+
+.importing-title {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+}
+
+.importing-subtitle {
+  font-size: 14px;
+  color: var(--md-on-surface-dim);
+  margin-top: -24px;
+}
+
+/* ============================================================
+   SCREEN 3 — Result (success / failure)
+   ============================================================ */
+#screen-result {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.result-card {
+  background: var(--md-surface);
+  border-radius: var(--md-radius-lg);
+  box-shadow: var(--md-shadow-2);
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.result-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 36px;
+}
+
+.result-icon.success {
+  background: var(--md-success-light);
+  color: var(--md-success);
+}
+
+.result-icon.error {
+  background: var(--md-error-light);
+  color: var(--md-error);
+}
+
+.result-title {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.result-subtitle {
+  font-size: 14px;
+  color: var(--md-on-surface-dim);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.countdown-badge {
+  display: inline-block;
+  background: var(--md-primary-light);
+  color: var(--md-primary-dark);
+  border-radius: var(--md-radius-xl);
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* Retry / action buttons */
+.md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--md-radius-xl);
+  padding: 10px 24px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+  transition: background var(--md-transition), box-shadow var(--md-transition);
+  text-decoration: none;
+}
+
+.md-btn-filled {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.md-btn-filled:hover {
+  background: var(--md-primary-dark);
+  box-shadow: var(--md-shadow-1);
+}
+
+.md-btn-outlined {
+  background: transparent;
+  color: var(--md-primary);
+  border: 1px solid var(--md-outline);
+}
+.md-btn-outlined:hover {
+  background: var(--md-primary-light);
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ============================================================
+   SCREEN 4 — Admin Panel
+   ============================================================ */
+#screen-admin {
+  flex-direction: column;
+}
+
+/* Top App Bar */
+.app-bar {
+  background: var(--md-surface);
+  border-bottom: 1px solid var(--md-outline);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--md-shadow-1);
+}
+
+.app-bar-title {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-bar-title .admin-chip {
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--md-primary-light);
+  color: var(--md-primary);
+  border-radius: var(--md-radius-xl);
+  padding: 2px 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.signout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--md-on-surface-dim);
+  border: 1px solid var(--md-outline);
+  border-radius: var(--md-radius-xl);
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--md-transition);
+}
+.signout-btn:hover {
+  background: #f1f3f4;
+}
+
+/* Admin body */
+.admin-body {
+  flex: 1;
+  padding: 32px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.admin-header {
+  margin-bottom: 28px;
+}
+
+.admin-header h2 {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+}
+
+.admin-header p {
+  font-size: 14px;
+  color: var(--md-on-surface-dim);
+  margin-top: 4px;
+}
+
+/* Stats row */
+.admin-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  background: var(--md-surface);
+  border: 1px solid var(--md-outline);
+  border-radius: var(--md-radius-md);
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--md-on-surface-dim);
+  box-shadow: var(--md-shadow-1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-chip strong {
+  color: var(--md-on-surface);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Download All */
+.admin-actions {
+  margin-bottom: 24px;
+}
+
+/* User cards list */
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-card {
+  background: var(--md-surface);
+  border-radius: var(--md-radius-md);
+  border: 1px solid var(--md-outline);
+  box-shadow: var(--md-shadow-1);
+  overflow: hidden;
+  transition: box-shadow var(--md-transition);
+}
+.user-card:hover {
+  box-shadow: var(--md-shadow-2);
+}
+
+.user-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--md-primary-light);
+  color: var(--md-primary);
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+}
+
+.user-email {
+  font-size: 13px;
+  color: var(--md-on-surface-dim);
+  margin-top: 2px;
+}
+
+.user-meta {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.meta-badge {
+  font-size: 12px;
+  color: var(--md-on-surface-dim);
+  text-align: right;
+}
+
+.meta-badge strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--md-on-surface);
+}
+
+.expand-icon {
+  color: var(--md-on-surface-dim);
+  transition: transform var(--md-transition);
+  flex-shrink: 0;
+}
+.user-card.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+/* Expandable JSON panel */
+.user-card-body {
+  display: none;
+  border-top: 1px solid var(--md-outline);
+}
+.user-card.expanded .user-card-body {
+  display: block;
+}
+
+.json-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 24px 0;
+}
+
+.json-viewer {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  padding: 20px 24px;
+  overflow-x: auto;
+  max-height: 320px;
+  overflow-y: auto;
+  white-space: pre;
+  margin: 12px 24px 0;
+  border-radius: var(--md-radius-md);
+}
+
+/* JSON syntax coloring */
+.json-viewer .json-key    { color: #89b4fa; }
+.json-viewer .json-str    { color: #a6e3a1; }
+.json-viewer .json-num    { color: #fab387; }
+.json-viewer .json-bool   { color: #f38ba8; }
+.json-viewer .json-null   { color: #6c7086; }
+
+.user-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  gap: 12px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--md-on-surface-dim);
+}
+
+.empty-state .empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  font-size: 16px;
+}
+
+/* Admin loading */
+.admin-loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--md-on-surface-dim);
+  font-size: 14px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 600px) {
+  .signin-card {
+    padding: 36px 24px 32px;
+  }
+
+  .admin-body {
+    padding: 20px 16px;
+  }
+
+  .app-bar {
+    padding: 0 16px;
+  }
+
+  .user-card-header {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .user-meta {
+    margin-left: 60px;
+    margin-top: -8px;
+  }
+
+  .admin-stats {
+    flex-direction: column;
+  }
+
+  .result-card {
+    padding: 36px 24px;
+  }
+}
